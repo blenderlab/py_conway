@@ -8,8 +8,6 @@ OFF = 0
 
 # size of array :
 N=10
-CELLSIZE = 32
-H_CELLSIZE = CELLSIZE / 2
 
 # define a 2D array (10x10):
 grid = numpy.array([
@@ -30,6 +28,9 @@ pygame.init()
 screen = pygame.display.set_mode((300, 300))
 clock = pygame.time.Clock()
 pygame.time.set_timer(pygame.USEREVENT, 1500)
+
+CELLSIZE = int(300/N)
+H_CELLSIZE = int(CELLSIZE / 2)
 
 
 # draw the 'g' grid, of size 'N' :
@@ -67,9 +68,9 @@ def update(g,N):
     return g
 
 
-def board_to_scr(pos):
-    x, y = pos
-    return (x * CELLSIZE + H_CELLSIZE, y * CELLSIZE + H_CELLSIZE)
+def board_to_scr(x,y):
+    
+    return (int(x * CELLSIZE + H_CELLSIZE),int( y * CELLSIZE + H_CELLSIZE))
 
 
 while True:
@@ -81,8 +82,8 @@ while True:
 	screen.fill(pygame.color.Color('white'))
 	for numligne in range(0,N):
 		for numcol in range(0,N):
-			pygame.draw.circle(screen, pygame.color.Color('black'), board_to_scr(cell), H_CELLSIZE, 0)
-
+			if grid[numcol,numligne]==ON:
+				pygame.draw.circle(screen, (255,0,255), board_to_scr(numcol,numligne),int(H_CELLSIZE), 0)
 	pygame.display.flip()
 	grid = update(grid,N)
 	clock.tick(60)
