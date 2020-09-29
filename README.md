@@ -5,4 +5,6 @@ Python Curse : implementing game of life
 01_Conway.py : Rendering using MatPlotLib
 02_Conway.py : Same as 01, with random initial map
 03_Conway.py : A PyGame rendering version
+04_Conway.py : PyGame version, with random grid, parametric size
+
 
