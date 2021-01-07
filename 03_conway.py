@@ -13,13 +13,13 @@ N=10
 grid = numpy.array([
     [0,0,0,0,0,0,0,0,0,0],
     [0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,1,0,0,0,1,0,0],
     [0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,1,0,0,0],
-    [0,0,0,0,0,1,0,1,0,0],
-    [0,0,0,0,0,0,0,1,1,0],
     [0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,1,0],
+    [0,0,0,1,0,1,0,0,0,0],
+    [0,0,0,1,0,1,0,0,0,0],
+    [0,0,0,1,1,1,0,0,0,0],
+    [0,0,0,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0,0,0,0],
     [0,0,0,0,0,0,0,0,0,0]
     ])
 
@@ -72,25 +72,26 @@ def board_to_scr(x,y):
 
     return (int(x * CELLSIZE + H_CELLSIZE),int( y * CELLSIZE + H_CELLSIZE))
 
-
-while True:
+play=True
+while play==True:
 	# Check if we want to exit :
-	if pygame.event.get(pygame.QUIT):
-		break
-
+    for event in pygame.event.get():
+        if pygame.event.get(pygame.QUIT):
+            break
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_w:
+                play=False
 	# Let's clean the screen :
-	screen.fill(pygame.color.Color('white'))
-	for numligne in range(0,N):
-		for numcol in range(0,N):
-			if grid[numcol,numligne]==ON:
-				pygame.draw.circle(screen, (255,0,255), board_to_scr(numcol,numligne),int(H_CELLSIZE), 0)
-	pygame.display.flip()
-	grid = update(grid,N)
-	clock.tick(60)
+    screen.fill(pygame.color.Color('white'))
+    for numligne in range(0,N):
+        for numcol in range(0,N):
+            if grid[numcol,numligne]==ON:
+                pygame.draw.circle(screen, (255,0,255), board_to_scr(numcol,numligne),int(H_CELLSIZE), 0)
+    pygame.display.flip()
+    grid = update(grid,N)
+    clock.tick(3)
 
-
-
-
+pygame.quit()
 
 
 

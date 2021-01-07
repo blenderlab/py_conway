@@ -9,11 +9,11 @@ OFF = 0
 vals = [ON, OFF]
 
 # size of array :
-N=20
+N=150
 
 def randomGrid(N):
     """returns a grid of NxN random values"""
-    return numpy.random.choice(vals, N*N, p=[0.2, 0.8]).reshape(N, N)
+    return numpy.random.choice(vals, N*N, p=[0.1, 0.9]).reshape(N, N)
 
 #Start pyGame Engine :
 pygame.init()
@@ -21,7 +21,7 @@ screen = pygame.display.set_mode((300, 300))
 clock = pygame.time.Clock()
 pygame.time.set_timer(pygame.USEREVENT, 1500)
 
-CELLSIZE = int(300/N)
+CELLSIZE = (300/N)
 H_CELLSIZE = int(CELLSIZE / 2)
 
 grid=randomGrid(N)
@@ -68,8 +68,8 @@ def board_to_scr(x,y,w):
 
 
 while True:
-    # Check if we want to exit : 
-    if pygame.event.get(pygame.QUIT): 
+    # Check if we want to exit :
+    if pygame.event.get(pygame.QUIT):
         break
 
     # Let's clean the screen :
@@ -83,7 +83,7 @@ while True:
 
     pygame.display.flip()
     grid = update(grid,N)
-    clock.tick(10)
+    clock.tick(100)
 
 
 
